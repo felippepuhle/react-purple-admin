@@ -1,0 +1,14 @@
+[ignore]
+
+[include]
+
+[libs]
+./flow-typed
+
+[options]
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=./src
+sharedmemory.hash_table_pow=21
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
+suppress_type=$FlowFixMe
+module.name_mapper='.*\(.graphql\)' -> 'empty/object'
