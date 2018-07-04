@@ -2,6 +2,9 @@
 import * as React from 'react';
 import { renderRoutes } from 'react-router-config';
 
+import DashboardContent from './components/DashboardContent';
+import DashboardHeader from './components/DashboardHeader';
+
 import type { RouteType } from '../../router/utils/types';
 
 type Props = {
@@ -14,7 +17,11 @@ class DashboardTemplate extends React.PureComponent<Props> {
 
     return (
       <React.Fragment>
-        {renderRoutes(route.routes)}
+        <DashboardHeader />
+
+        <DashboardContent>
+          {renderRoutes(route.routes)}
+        </DashboardContent>
       </React.Fragment>
     );
   }

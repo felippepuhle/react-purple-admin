@@ -1,7 +1,11 @@
 // @flow
 import * as React from 'react';
 import { injectGlobal } from 'styled-components';
+import chroma from 'chroma-js';
 
+import 'bootstrap/dist/css/bootstrap.css';
+
+import * as COLORS from './styles/colors';
 import * as FONTS from './styles/fonts';
 
 // eslint-disable-next-line
@@ -43,6 +47,7 @@ injectGlobal`
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: ${chroma(COLORS.PRIMARY).brighten(2.85).saturate(0.5).luminance(0.85)};
     font-size: 1rem;
     font-family: ${FONTS.REGULAR};
     font-weight: initial;
