@@ -4,6 +4,7 @@ import { Nav } from 'reactstrap';
 import styled from 'styled-components';
 
 import routeTo from '../../../../router/utils/routeTo';
+import DashboardSidebarAvatar from './components/DashboardSidebarAvatar';
 import DashboardSiderbarItem from './components/DashboardSiderbarItem';
 
 const Wrapper = styled.div`
@@ -22,6 +23,12 @@ class DashboardSidebar extends React.PureComponent<*> {
     return (
       <Wrapper>
         <StyledNav>
+          <DashboardSidebarAvatar
+            image="http://www.bootstrapdash.com/demo/purple-admin-free/images/faces/face1.jpg"
+            name="David Grey. H"
+            description="Project Manager"
+          />
+
           <DashboardSiderbarItem
             icon="home"
             title="Dashboard"
@@ -31,30 +38,10 @@ class DashboardSidebar extends React.PureComponent<*> {
 
           <DashboardSiderbarItem
             icon="crosshairs-gps"
-            title="Components"
+            title="UI Elements"
             subitems={[
               {
                 title: 'Buttons',
-                route: routeTo('dashboard'),
-              },
-              {
-                title: 'Grid System',
-                route: routeTo('dashboard'),
-              },
-              {
-                title: 'Panels',
-                route: routeTo('dashboard'),
-              },
-              {
-                title: 'Sweet Alert',
-                route: routeTo('dashboard'),
-              },
-              {
-                title: 'Notifications',
-                route: routeTo('dashboard'),
-              },
-              {
-                title: 'Icons',
                 route: routeTo('dashboard'),
               },
               {
@@ -62,6 +49,12 @@ class DashboardSidebar extends React.PureComponent<*> {
                 route: routeTo('dashboard'),
               },
             ]}
+          />
+
+          <DashboardSiderbarItem
+            icon="format-list-bulleted"
+            title="Forms"
+            route={routeTo('dashboard')}
           />
         </StyledNav>
       </Wrapper>

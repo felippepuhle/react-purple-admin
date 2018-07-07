@@ -24,7 +24,7 @@ const LinkCSS = css`
   align-items: center;
   justify-content: space-between;
   white-space: nowrap;
-  padding: 1.125rem 0 1.125rem 0 !important;
+  padding: 1.125rem 0 !important;
   cursor: pointer;
 `;
 const StyledLink = styled(Link).attrs({
