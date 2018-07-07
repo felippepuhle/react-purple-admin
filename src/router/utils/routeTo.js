@@ -21,11 +21,11 @@ const findPathByRouteName =
       previous,
     );
 
-const replaceParams = (path: string, params: RouteParamsType): string => {
-  return Object.keys(params).reduce((accumulator, currentValue) => {
-    return path.replace(`:${currentValue}`, params[currentValue]);
-  }, path);
-};
+const replaceParams = (path: string, params: RouteParamsType): string =>
+  Object.keys(params).reduce(
+    (accumulator, currentValue) => path.replace(`:${currentValue}`, params[currentValue]),
+    path,
+  );
 
 const routeTo = (name: string, params: RouteParamsType = {}): string => {
   const path = findPathByRouteName(name, allRoutes);

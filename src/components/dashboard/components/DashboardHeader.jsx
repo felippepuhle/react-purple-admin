@@ -7,17 +7,14 @@ import LogoAsset from '../../../assets/img/logo.svg';
 import LogoMiniAsset from '../../../assets/img/logo-mini.svg';
 
 import MEDIA from '../../../styles/media';
-import * as FONTS from '../../../styles/fonts';
 
 const StyledNavbar = styled(Navbar).attrs({
   className: 'd-flex flex-row',
   fixed: true,
-  light: true,
-  color: 'light',
 })`
-  font-family: ${FONTS.LIGHT};
   padding: 0px !important;
   height: 70px;
+  background: #FFF !important;
 `;
 
 const StyledNavbarBrand = styled(NavbarBrand)`
