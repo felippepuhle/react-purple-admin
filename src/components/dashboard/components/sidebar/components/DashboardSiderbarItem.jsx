@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Nav, NavItem, Collapse } from 'reactstrap';
 import styled, { css } from 'styled-components';
 import idx from 'idx';
+
+import type { ContextRouter } from 'react-router-dom';
 
 import routeTo from '../../../../../router/utils/routeTo';
 import * as COLORS from '../../../../../styles/colors';
@@ -41,8 +43,8 @@ const StyledDumbLink = styled.div.attrs({
 const Title = styled.div`
   flex: 1;
   font-size: 0.875rem;
-  font-weight: ${props => props.isColorized ? 500 : 400};
-  color: ${props => props.isColorized ? COLORS.PRIMARY : '#3e4b5b'};
+  font-weight: ${props => props.selected ? 500 : 400};
+  color: ${props => props.selected ? COLORS.PRIMARY : '#3e4b5b'};
 `;
 
 const Icons = styled.div`
@@ -52,7 +54,7 @@ const Icons = styled.div`
 const Icon = styled(MaterialIcon)`
   transition: color 200ms ease;
   font-size: 1.125rem;
-  color: ${props => props.isColorized ? COLORS.PRIMARY : '#bba8bff5'};
+  color: ${props => props.selected ? COLORS.PRIMARY : '#bba8bff5'};
 `;
 
 const CollapseIconWrapper = styled.div`
@@ -73,7 +75,7 @@ const SubItemLink = styled(Link)`
   align-items: center;
   padding: 0.75rem 0;
   font-size: 0.8125rem;
-  color: ${props => props.isColorized ? COLORS.PRIMARY : '#888'};
+  color: ${props => props.selected ? COLORS.PRIMARY : '#888'};
   text-decoration: none !important;
 
   &:hover {
@@ -92,13 +94,12 @@ const SubItemIcon = styled(MaterialIcon).attrs({
 type SubItemType = {
   title: string,
   route: string,
-  isActive?: boolean,
 };
 
 type Props = {
+  ...ContextRouter,
   title: string,
   icon: string,
-  isActive?: boolean,
   route: ?string,
   subitems: ?Array<SubItemType>,
 };
@@ -109,7 +110,6 @@ type State = {
 
 class DashboardSidebarItem extends React.PureComponent<Props, State> {
   static defaultProps = {
-    isActive: false,
     route: null,
     subitems: null,
   };
@@ -122,6 +122,16 @@ class DashboardSidebarItem extends React.PureComponent<Props, State> {
     };
   }
 
+  isRouteActive = (route: ?string): boolean => {
+    const { location } = this.props;
+
+    if (!route) {
+      return false;
+    }
+
+    return location.pathname === route;
+  };
+
   hasActiveSubItem = (): boolean => {
     const { subitems } = this.props;
 
@@ -129,7 +139,7 @@ class DashboardSidebarItem extends React.PureComponent<Props, State> {
       return false;
     }
 
-    return subitems.filter(subitem => !!subitem.isActive).length > 0;
+    return subitems.filter(subitem => this.isRouteActive(subitem.route)).length > 0;
   };
 
   toggle = () => {
@@ -137,10 +147,10 @@ class DashboardSidebarItem extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { title, icon, isActive } = this.props;
+    const { title, icon, route } = this.props;
     const { isOpen } = this.state;
 
-    const isColorized = isActive || this.hasActiveSubItem();
+    const selected = this.isRouteActive(route) || this.hasActiveSubItem();
 
     const subitems = idx(this.props, _ => _.subitems) || [];
     const hasSubItems = !!subitems && subitems.length > 0;
@@ -151,15 +161,15 @@ class DashboardSidebarItem extends React.PureComponent<Props, State> {
     return (
       <Wrapper>
         <LinkComponent {...linkProps}>
-          <Title isColorized={isColorized}>{title}</Title>
+          <Title selected={selected}>{title}</Title>
 
           <Icons>
             {hasSubItems && (
               <CollapseIconWrapper isOpen={isOpen}>
-                <Icon name="chevron-left" isColorized={isColorized} />
+                <Icon name="chevron-left" selected={selected} />
               </CollapseIconWrapper>
             )}
-            <Icon name={icon} isColorized={isColorized} />
+            <Icon name={icon} selected={selected} />
           </Icons>
         </LinkComponent>
 
@@ -168,7 +178,10 @@ class DashboardSidebarItem extends React.PureComponent<Props, State> {
             <SubItems>
               {subitems.map(item => (
                 <NavItem key={item.title}>
-                  <SubItemLink to={item.route}>
+                  <SubItemLink
+                    to={item.route}
+                    selected={this.isRouteActive(item.route)}
+                  >
                     <SubItemIcon />
                     {item.title}
                   </SubItemLink>
@@ -182,4 +195,4 @@ class DashboardSidebarItem extends React.PureComponent<Props, State> {
   }
 }
 
-export default DashboardSidebarItem;
+export default withRouter(DashboardSidebarItem);

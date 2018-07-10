@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Nav } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -33,7 +34,6 @@ class DashboardSidebar extends React.PureComponent<*> {
             icon="home"
             title="Dashboard"
             route={routeTo('dashboard')}
-            isActive
           />
 
           <DashboardSiderbarItem
@@ -42,11 +42,11 @@ class DashboardSidebar extends React.PureComponent<*> {
             subitems={[
               {
                 title: 'Buttons',
-                route: routeTo('dashboard'),
+                route: routeTo('dashboard.buttons'),
               },
               {
                 title: 'Typography',
-                route: routeTo('dashboard'),
+                route: '#todo',
               },
             ]}
           />
@@ -54,7 +54,7 @@ class DashboardSidebar extends React.PureComponent<*> {
           <DashboardSiderbarItem
             icon="format-list-bulleted"
             title="Forms"
-            route={routeTo('dashboard')}
+            route="#todo"
           />
         </StyledNav>
       </Wrapper>
@@ -62,4 +62,4 @@ class DashboardSidebar extends React.PureComponent<*> {
   }
 }
 
-export default DashboardSidebar;
+export default withRouter(DashboardSidebar);

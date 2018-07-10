@@ -15,6 +15,12 @@ const dashboardRoutes = {
       component: createLoadable(import('../../components/home/Home')),
       exact: true,
     },
+    {
+      name: 'dashboard.buttons',
+      path: buildPath('buttons'),
+      component: createLoadable(import('../../components/ui/buttons/Buttons')),
+      exact: true,
+    },
   ],
 };
 
