@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Nav, NavItem, Collapse } from 'reactstrap';
 import styled, { css } from 'styled-components';
+import chroma from 'chroma-js';
 import idx from 'idx';
 
 import type { ContextRouter } from 'react-router-dom';
@@ -53,7 +54,7 @@ const Icons = styled.div`
 const Icon = styled(MaterialIcon)`
   transition: color 200ms ease;
   font-size: 1.125rem;
-  color: ${props => props.selected ? COLORS.PRIMARY : '#bba8bff5'};
+  color: ${props => props.selected ? COLORS.PRIMARY : chroma(COLORS.PRIMARY).brighten(0.9).desaturate(2.5)};
 `;
 
 const CollapseIconWrapper = styled.div`
