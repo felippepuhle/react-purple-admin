@@ -10,14 +10,12 @@ const dashboardRoutes = {
   component: DashboardTemplate,
   routes: [
     {
-      name: 'dashboard',
       path: buildPath(),
       component: createLoadable(import('../../components/home/Home')),
       exact: true,
     },
     {
-      name: 'dashboard.buttons',
-      path: buildPath('buttons'),
+      path: buildPath('ui/buttons'),
       component: createLoadable(import('../../components/ui/buttons/Buttons')),
       exact: true,
     },

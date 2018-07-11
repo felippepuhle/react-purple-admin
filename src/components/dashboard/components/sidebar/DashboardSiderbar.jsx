@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Nav } from 'reactstrap';
 import styled from 'styled-components';
 
-import routeTo from '../../../../router/utils/routeTo';
+import buildPath from '../../../../router/utils/buildPath';
 import DashboardSidebarAvatar from './components/DashboardSidebarAvatar';
 import DashboardSiderbarItem from './components/DashboardSiderbarItem';
 
@@ -33,7 +33,7 @@ class DashboardSidebar extends React.PureComponent<*> {
           <DashboardSiderbarItem
             icon="home"
             title="Dashboard"
-            route={routeTo('dashboard')}
+            route={buildPath()}
           />
 
           <DashboardSiderbarItem
@@ -42,11 +42,11 @@ class DashboardSidebar extends React.PureComponent<*> {
             subitems={[
               {
                 title: 'Buttons',
-                route: routeTo('dashboard.buttons'),
+                route: buildPath('ui/buttons'),
               },
               {
                 title: 'Typography',
-                route: '#todo',
+                route: buildPath('#todo'),
               },
             ]}
           />
@@ -54,7 +54,7 @@ class DashboardSidebar extends React.PureComponent<*> {
           <DashboardSiderbarItem
             icon="format-list-bulleted"
             title="Forms"
-            route="#todo"
+            route={buildPath('#todo')}
           />
         </StyledNav>
       </Wrapper>

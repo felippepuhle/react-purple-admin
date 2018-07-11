@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { NavItem } from 'reactstrap';
 import styled from 'styled-components';
 
-import routeTo from '../../../../../router/utils/routeTo';
+import buildPath from '../../../../../router/utils/buildPath';
 import * as COLORS from '../../../../../styles/colors';
 import { Avatar, MaterialIcon } from '../../../../common';
 
@@ -63,7 +63,7 @@ class DashboardSidebarAvatar extends React.PureComponent<Props> {
 
     return (
       <Wrapper>
-        <StyledLink to={routeTo('dashboard')}>
+        <StyledLink to={buildPath('/')}>
           <Avatar image={image} name={name} size={44} />
 
           <NameAndDescription>

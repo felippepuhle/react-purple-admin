@@ -7,7 +7,6 @@ import idx from 'idx';
 
 import type { ContextRouter } from 'react-router-dom';
 
-import routeTo from '../../../../../router/utils/routeTo';
 import * as COLORS from '../../../../../styles/colors';
 import { MaterialIcon } from '../../../../common';
 
@@ -156,7 +155,7 @@ class DashboardSidebarItem extends React.PureComponent<Props, State> {
     const hasSubItems = !!subitems && subitems.length > 0;
 
     const LinkComponent = hasSubItems ? StyledDumbLink : StyledLink;
-    const linkProps = hasSubItems ? { onClick: this.toggle } : { to: routeTo('dashboard') };
+    const linkProps = hasSubItems ? { onClick: this.toggle } : { to: route };
 
     return (
       <Wrapper>
