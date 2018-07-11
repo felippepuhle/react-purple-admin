@@ -39,7 +39,7 @@ const Logo = styled.img.attrs({
   height: 28px;
 `;
 
-class DashboardHeader extends React.PureComponent<*> {
+class DashboardNav extends React.PureComponent<*> {
   render() {
     return (
       <StyledNavbar>
@@ -52,4 +52,4 @@ class DashboardHeader extends React.PureComponent<*> {
   }
 }
 
-export default DashboardHeader;
+export default DashboardNav;

@@ -4,7 +4,7 @@ import { renderRoutes } from 'react-router-config';
 import styled from 'styled-components';
 
 import DashboardSiderbar from './components/sidebar/DashboardSiderbar';
-import DashboardHeader from './components/DashboardHeader';
+import DashboardNav from './components/DashboardNav';
 
 import type { RouteType } from '../../router/utils/types';
 
@@ -28,7 +28,7 @@ class DashboardTemplate extends React.PureComponent<Props> {
 
     return (
       <React.Fragment>
-        <DashboardHeader />
+        <DashboardNav />
 
         <Content>
           <DashboardSiderbar />
