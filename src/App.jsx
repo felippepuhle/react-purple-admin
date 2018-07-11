@@ -3,8 +3,8 @@ import * as React from 'react';
 import { injectGlobal } from 'styled-components';
 import chroma from 'chroma-js';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import 'mdi/css/materialdesignicons.css';
+import './assets/scss/bootstrap.scss';
 
 import * as COLORS from './styles/colors';
 

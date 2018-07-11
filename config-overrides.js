@@ -1,15 +1,20 @@
+const rewireSass = require('react-app-rewire-scss');
 const rewireStyledComponents = require('react-app-rewire-styled-components');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 
-/* config-overrides.js */
-module.exports = function override(config, env) {
-  const configWithStyled = rewireStyledComponents(config, env);
+const rewireArray = [rewireSass, rewireStyledComponents];
 
-  configWithStyled.plugins.push(new CircularDependencyPlugin({
+module.exports = function override(config, env) {
+  const mergedConfigs = rewireArray.reduce(
+    (accumulator, currentValue) => currentValue(accumulator, env),
+    config,
+  );
+
+  mergedConfigs.plugins.push(new CircularDependencyPlugin({
     exclude: /node_modules/,
     failOnError: true,
   }));
 
-  return configWithStyled;
+  return mergedConfigs;
 };
 

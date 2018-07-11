@@ -11,4 +11,5 @@ module.system.node.resolve_dirname=./src
 sharedmemory.hash_table_pow=21
 suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
 suppress_type=$FlowFixMe
-module.name_mapper='.*\(.graphql\)' -> 'empty/object'
+module.file_ext=.scss
+module.name_mapper.extension='scss' -> 'empty/object'
